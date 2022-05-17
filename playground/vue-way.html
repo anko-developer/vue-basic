@@ -15,19 +15,28 @@
     const div = document.querySelector('#app');
     const viewModel = {};
 
-    // 객체의 동작을 재정의
-    Object.defineProperty(viewModel, 'str', {
-      // 속성에 접근했을 때의 동작을 정의
-      get() {
-        console.log('접근');
-      },
-      // 속성에 값을 할당했을 때의 동작을 정의
-      set(newValue) {
-        console.log('할당', newValue);
-        div.innerHTML = newValue;
+    (function() {
+      function init() {
+        // 객체의 동작을 재정의
+        Object.defineProperty(viewModel, 'str', {
+          // 속성에 접근했을 때의 동작을 정의
+          get() {
+            console.log('접근');
+          },
+          // 속성에 값을 할당했을 때의 동작을 정의
+          set(newValue) {
+            console.log('할당', newValue);
+            render(newValue);
+          }
+        });
       }
-    });
-    console.log(viewModel);
+      
+      function render(value) {
+        div.innerHTML = value;
+      }
+
+      init();
+    })();
   </script>
 </body>
 </html>
