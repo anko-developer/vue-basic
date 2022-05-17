@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <app-header></app-header>
+    <app-footer></app-footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 플러그인이나 라이브러리로 전역에서 사용할 녀석들을 전역 컴포넌트로 만들고
+    // 보통 서비스의 경우는 지역 컴포넌트로 만든다.
+    Vue.component('app-header', {
+      template: '<h1>Header</h1>'
+    });
+
+    new Vue({
+      el: '#app',
+      // 지역 컴포넌트
+      components: {
+        'app-footer':  {
+          template: '<footer>지역 컴포넌트 푸터 영역입니다.</footer>'
+        }
+      }
+    });
+  </script>
+</body>
+</html>
