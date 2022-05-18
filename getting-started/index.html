@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+      const div = document.querySelector('#app');
+      const study = {};
+
+      (function() {
+        function init() {
+          Object.defineProperty(study, 'str', {
+            get() {
+              console.log('접근');
+            },
+            set(newValue) {
+              console.log('변경');
+              render(newValue);
+            }
+          });
+        }
+
+        function render(v) {
+          div.innerHTML = v;
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>
