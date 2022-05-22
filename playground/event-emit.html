@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <app-header v-on:pass="logText"></app-header>
+    <app-content v-bind:propsdata="num"  v-on:increase="increaseNum"></app-content>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    const appHeader = {
+      template: '<button v-on:click="passEvent">click me</button>',
+      methods: {
+        passEvent() {
+          this.$emit('pass'); // 컴포넌트에서 발생한 이벤트 이름은 'pass'로 지정해줬음
+        }
+      }
+    }
+
+    const appContent = {
+      template: '<button v-on:click="addNumber">{{propsdata}}</button>',
+      props: ['propsdata'],
+      methods: {
+        addNumber() {
+          this.$emit('increase');
+        }
+      }
+    }
+
+    new Vue({
+      el: '#app',
+      components: {
+        'app-header': appHeader,
+        'app-content': appContent
+      },
+      methods: {
+        logText() {
+          console.log('hi');
+        },
+        increaseNum() {
+          this.num += 1;
+        }
+      },
+      data: {
+        num: 10
+      }
+    });
+  </script>
+</body>
+</html>
