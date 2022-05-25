@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     renewStr() {
-      this.str = 'wow';
+      this.str = 'wow.';
     }
   }
 }
